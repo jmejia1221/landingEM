@@ -15,13 +15,13 @@ if (isset($_GET) && count($_GET)>0)
 	{
 		$query=$db->query("SELECT * FROM productos");
 		$datos=array();
-		while ($usuarios=$query->fetch_array())
+		while ($fila=$query->fetch_array())
 		{
-			$datos[]=array(	"id"=>$usuarios["idProducto"],
-							"nombre"=>$usuarios["nombre"],
-							"precio"=>$usuarios["precio"],
-							"stock"=>$usuarios["stock"],
-							"oferta"=>$usuarios["oferta"]
+			$datos[]=array(	"id"=>$fila["idProducto"],
+							"nombre"=>$fila["nombre"],
+							"precio"=>$fila["precio"],
+							"stock"=>$fila["stock"],
+							"oferta"=>$fila["oferta"]
 			);
 		}
 		echo '{"productos": ', json_encode($datos), '}';
@@ -30,13 +30,13 @@ if (isset($_GET) && count($_GET)>0)
 }
 $query=$db->query("SELECT * FROM productos");
 		$datos=array();
-		while ($usuarios=$query->fetch_array())
+		while ($fila=$query->fetch_array())
 		{
-			$datos[]=array(	"id"=>$usuarios["idProducto"],
-							"nombre"=>$usuarios["nombre"],
-							"precio"=>$usuarios["precio"],
-							"stock"=>$usuarios["stock"],
-							"oferta"=>$usuarios["oferta"]
+			$datos[]=array(	"id"=>$fila["idProducto"],
+							"nombre"=>$fila["nombre"],
+							"precio"=>$fila["precio"],
+							"stock"=>$fila["stock"],
+							"oferta"=>$fila["oferta"]
 			);
 		}
 		echo '{"productos": ', json_encode($datos), '}';
