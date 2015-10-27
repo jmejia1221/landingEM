@@ -2,7 +2,7 @@
 $dbhost="localhost";
 $dbname="landingem";
 $dbuser="root";
-$dbpass="";
+$dbpass="root";
 $db = new mysqli($dbhost,$dbuser,$dbpass,$dbname);
 
 if (isset($_GET) && count($_GET)>0)
