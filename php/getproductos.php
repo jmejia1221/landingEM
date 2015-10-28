@@ -1,43 +1,47 @@
 <?php
-$dbhost="localhost";
-$dbname="landingem";
-$dbuser="root";
-$dbpass="";
-$db = new mysqli($dbhost,$dbuser,$dbpass,$dbname);
-
-if (isset($_GET) && count($_GET)>0)
+include 'conexion.php';
+if ($db->connect_errno) 
 {
-	if ($db->connect_errno) 
-	{
-		die ($db->connect_errno. $db->connect_error);
-	}
-	else
-	{
-		$query=$db->query("SELECT * FROM productos");
-		$datos=array();
-		while ($fila=$query->fetch_array())
-		{
-			$datos[]=array(	"id"=>$fila["idProducto"],
-							"nombre"=>$fila["nombre"],
-							"precio"=>$fila["precio"],
-							"stock"=>$fila["stock"],
-							"oferta"=>$fila["oferta"]
-			);
-		}
-		echo '{"productos": ', json_encode($datos), '}';
-	}
-
+	die ($db->connect_errno. $db->connect_error);
 }
-$query=$db->query("SELECT * FROM productos");
-		$datos=array();
-		while ($fila=$query->fetch_array())
-		{
-			$datos[]=array(	"id"=>$fila["idProducto"],
-							"nombre"=>$fila["nombre"],
-							"precio"=>$fila["precio"],
-							"stock"=>$fila["stock"],
-							"oferta"=>$fila["oferta"]
-			);
+else
+{
+	$query = $db->query('SELECT * FROM productos');
+	$query2 = $db->query('SELECT * FROM categorias');
+	$datos = array();
+	$categorias = array();
+	while ($fila = $query2->fetch_array()) {
+		$categorias[]= array("id" => $fila["idCategoria"],
+							 "nombre" => $fila["nombre"]
+							);
+	}
+	while ($fila = $query->fetch_array())
+	{
+		for ($i = 0; $i < count($categorias); $i++) { 
+			$categoria = array_search($fila["categorias_idCategorias"], $categorias[$i]);
+			if ($categoria != false) {
+				$categoria = $i;
+				break;
+			}
 		}
-		echo '{"productos": ', json_encode($datos), '}';
+
+		if ($fila["oferta"] > 0) {
+			$precioventa = $fila["precio"] - ($fila["precio"] * $fila["oferta"] / 100);
+		} else {
+			$precioventa = $fila["precio"];
+		}
+
+		$datos[]=array(	"id"=>$fila["idProducto"],
+						"nombre" => $fila["nombre"],
+						"precio" => $fila["precio"],
+						"stock" => $fila["stock"],
+						"oferta" => $fila["oferta"],
+						"imagen" => $fila["imagen"],
+						"idcategoria" => $fila["categorias_idCategorias"],
+						"categoria" => $categorias[$categoria]["nombre"],
+						"preciod" => $precioventa
+		);
+	}
+	echo '{"productos": ', json_encode($datos), '}';
+}
 ?>

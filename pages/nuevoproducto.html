@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+</head>
+<body>
+	
+	<form action="../php/setproducto.php" method="POST" enctype="multipart/form-data">
+		<div>
+			Nuevo Producto		
+		</div>
+
+		<label>Nombre</label>
+		<input name="nombre" placeholder="Nombre">
+		<br>
+		<label>Categoria (ID)</label>
+		<input name="categoria">
+		<br>
+		<label>Precio</label>
+		<input name="precio" placeholder="Precio">
+		<br>
+		<label>Stock</label>
+		<input name="stock" placeholder="Stock">
+		<br>
+		<label>Oferta</label>
+		<input name="oferta" placeholder="Oferta">
+		<br>
+		<label>Imagen</label>
+		<input type="file" name="imagen" id="imagen">
+		<br>
+		<button type="submit">Confirmar</button>
+	</form>
+</body>
+</html>

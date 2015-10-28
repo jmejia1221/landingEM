@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE>
+<html ng-app="landing" ng-controller="productosCtrl">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 </head>
-<body body ng-app="landing" ng-controller="productosCtrl">
+<body>
 
 <table class="table table-striped">
   <thead>
@@ -17,6 +17,10 @@
 	    <th>precio</th>
 	    <th>stock</th>
 	    <th>oferta</th>
+	    <th>imagen</th>
+	    <th>id categoria</th>
+	    <th>categoria</th>
+	    <th>precio de venta</th>
   	</tr>
   </thead>
   <tbody>
@@ -26,6 +30,10 @@
 	    <td>{{ x.precio }}</td>
 	    <td>{{ x.stock }}</td>
 	    <td>{{ x.oferta }}</td>
+	    <td><img src="images/{{x.imagen}}" height="200" width="200"></td>
+	    <td>{{ x.idcategoria }}</td>
+	    <td>{{ x.categoria }}</td>
+	    <td>{{ x.preciod }}</td>
   	</tr>
   </tbody>
 </table>
