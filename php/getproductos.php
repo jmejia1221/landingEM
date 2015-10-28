@@ -11,8 +11,8 @@ else
 	$datos = array();
 	$categorias = array();
 	while ($fila = $query2->fetch_array()) {
-		$categorias[]= array("id" => $fila["idCategoria"],
-							 "nombre" => $fila["nombre"]
+		$categorias[]= array("id" => $fila["idCategorias"],
+							 "nombre" => $fila["Nombre"]
 							);
 	}
 	while ($fila = $query->fetch_array())
