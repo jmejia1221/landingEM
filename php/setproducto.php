@@ -12,7 +12,7 @@ if ($_FILES["imagen"]["error"] > 0){
 	$permitidos = array("image/jpg", "image/jpeg", "image/gif", "image/png");
 
 	if (in_array($_FILES['imagen']['type'], $permitidos)){
-		$ruta = "../images/" . $_FILES['imagen']['name'];
+		$ruta = "../../landingfrontend/images/" . $_FILES['imagen']['name'];
 		$resultado = @move_uploaded_file($_FILES["imagen"]["tmp_name"], $ruta);
 		if ($resultado){
 			$imagen = $_FILES['imagen']['name'];
